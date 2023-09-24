@@ -18,21 +18,29 @@ const ChatArea = (props: PropsType) => {
 
   const defaultBoxStyle = {
     overflowY: "auto",
-    marginBottom: 2,
+    marginBottom: 1,
+    color: "white",
   };
   const fullScreenStyle = {
     ...defaultBoxStyle,
-    height: "440px",
+    height: "460px",
   };
   const smallScreenStyle = {
     ...defaultBoxStyle,
-    height: "290px",
+    height: "300px",
     width: "300px",
   };
 
-  const handleClick = () => {
+  const handleSend = () => {
     setUserInputArray([...userInputArray, userInput]);
-    // setUserInput("");
+    setUserInput("");
+  };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    // console.log("User pressed: ", event.key);
+    // if (event.key === "Enter") {}
+    if (event.key === "Enter" && userInput !== "") {
+      handleSend();
+    }
   };
 
   return (
@@ -44,15 +52,17 @@ const ChatArea = (props: PropsType) => {
       </Box>
       <TextField
         fullWidth
+        // multiline
         id="outlined-basic"
         variant="outlined"
         onChange={(e) => setUserInput(e.target.value)}
+        onKeyDown={handleKeyDown}
         value={userInput}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={handleClick}>
-                <SendIcon sx={{ color: "white" }} />
+              <IconButton disabled={!userInput} onClick={handleSend}>
+                <SendIcon sx={userInput ? { color: "white" } : {}} />
               </IconButton>
             </InputAdornment>
           ),

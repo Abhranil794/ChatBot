@@ -50,7 +50,14 @@ const ChatBot = () => {
   return (
     <div>
       <Button
-        sx={{ float: "right", width: "6%", borderRadius: "50%", padding: 0 }}
+        sx={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          width: "6%",
+          borderRadius: "50%",
+          padding: 0,
+        }}
         variant="outlined"
         onClick={handleClickOpen}
       >
@@ -71,7 +78,7 @@ const ChatBot = () => {
         sx={isExpanded ? {} : smallScreenDialogStyle}
         PaperProps={{
           style: {
-            backgroundColor: "#272829",
+            backgroundColor: "#212A3E",
             boxShadow: "none",
           },
         }}
@@ -88,7 +95,7 @@ const ChatBot = () => {
             sx={{ m: 0, p: 2, color: "white" }}
             id="customized-dialog-title"
           >
-            Modal title
+            Chat Bot
           </DialogTitle>
           <Box>
             <IconButton
@@ -107,7 +114,7 @@ const ChatBot = () => {
             </IconButton>
           </Box>
         </Box>
-        <DialogContent>
+        <DialogContent sx={{ p: 1 }}>
           <ChatArea isExpanded={isExpanded} />
         </DialogContent>
       </Dialog>
@@ -115,3 +122,5 @@ const ChatBot = () => {
   );
 };
 export default ChatBot;
+
+// black 272829
